@@ -25,7 +25,7 @@ create table if not exists public.quote_requests (
   service text,
   currency text not null default 'INR' check (currency in ('INR','USD')),
   message text not null,
-  status text not null default 'new' check (status in ('new','in_progress','quoted','closed')),
+  status text not null default 'new' check (status in ('new','in_progress','approved','quoted','closed')),
   created_at timestamptz not null default now()
 );
 create table if not exists public.support_tickets (
