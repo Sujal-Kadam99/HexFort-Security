@@ -1,15 +1,14 @@
 "use client";
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Shell, PageHero } from "@/components/Site";
 import { supabase, supabaseConfigured } from "@/lib/supabase";
 
 export default function EngagementPage(){
- const params=useSearchParams(); const service=params.get("service")||"Web Application VAPT";
  const [mode,setMode]=useState<"online"|"upload">("online"); const [busy,setBusy]=useState(false); const [notice,setNotice]=useState(""); const [file,setFile]=useState<File|null>(null);
- const [f,setF]=useState({client_name:"",client_email:"",client_phone:"",client_company:"",representative_name:"",representative_title:"",client_address:"",service,assets:"",environment:"Staging",excluded_assets:"",start_date:"",end_date:"",permitted_hours:"Weekdays 10:00–18:00 IST",blackout_dates:"",source_ips:"",emergency_name:"",emergency_phone:"",emergency_email:"",special_instructions:"",fee_inr:"",fee_usd:"",typed_signature:"",accepted:false});
+ const [f,setF]=useState({client_name:"",client_email:"",client_phone:"",client_company:"",representative_name:"",representative_title:"",client_address:"",service:"Web Application VAPT",assets:"",environment:"Staging",excluded_assets:"",start_date:"",end_date:"",permitted_hours:"Weekdays 10:00–18:00 IST",blackout_dates:"",source_ips:"",emergency_name:"",emergency_phone:"",emergency_email:"",special_instructions:"",fee_inr:"",fee_usd:"",typed_signature:"",accepted:false});
  const change=(k:string,v:string|boolean)=>setF(p=>({...p,[k]:v}));
+ useEffect(()=>{const service=new URLSearchParams(window.location.search).get("service");if(service)setF(p=>({...p,service}));},[]);
  async function submit(e:React.FormEvent){e.preventDefault();setNotice("");if(!supabase||!supabaseConfigured){setNotice("Database is not configured yet. Follow SETUP.md before submitting.");return;} if(mode==="upload"&&!file){setNotice("Please attach your signed PDF.");return;} if(mode==="online"&&(!f.typed_signature.trim()||!f.accepted)){setNotice("Enter your full name as signature and confirm authorization.");return;} setBusy(true);
   try { let filePath:string|null=null; if(mode==="upload"&&file){const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");const path=`${Date.now()}-${crypto.randomUUID()}-${safe}`;const up=await supabase.storage.from("engagement-documents").upload(path,file,{contentType:"application/pdf",upsert:false});if(up.error)throw new Error("PDF upload failed. Confirm the private storage bucket is configured. "+up.error.message);filePath=path;}
   const payload={...f,signature_method:mode,typed_signature:mode==="online"?f.typed_signature:null,consent_accepted:mode==="online"?f.accepted:true,signed_pdf_path:filePath,approval_status:"pending_review",authorization_status:"not_authorized",submitted_at:new Date().toISOString()}; delete (payload as any).accepted;
