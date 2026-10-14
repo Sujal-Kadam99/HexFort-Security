@@ -18,11 +18,7 @@ export default function Home() {
     <p className="lead">HexFort Security helps organizations find weaknesses, strengthen defenses and build resilience through authorized offensive and defensive security services.</p>
     <div className="actions"><Link className="btn" href="/contact">Get a Quote →</Link><Link className="btn secondary" href="/services">Explore Services</Link></div>
     </div>
-    <div className="battle-visual" aria-label="Red Team and Blue Team concept">
-      <div className="team redteam"><div className="orb">◎</div><h3>RED TEAM</h3><p>SIMULATE ATTACKS<br/>FIND WEAKNESSES<br/>VALIDATE CONTROLS</p></div>
-      <div className="team blueteam"><div className="orb">◈</div><h3>BLUE TEAM</h3><p>DETECT THREATS<br/>RESPOND EFFECTIVELY<br/>STAY RESILIENT</p></div>
-      <div className="versus">H×F</div>
-    </div>
+    <img className="hero-image" src="/herojpeg.jpeg" alt="Red Team and Blue Team cybersecurity operations" />
    </div></section>
    <div className="trust-strip"><div className="container trust-grid">
     {[["RED TEAM","Adversary simulation","red"],["BLUE TEAM","Defensive operations",""],["VAPT","External & internal testing",""],["CONSULTING","Security strategy & advisory",""]].map(x=><div className="trust-item" key={x[0]}><span className={"dot "+x[2]}></span><div><strong>{x[0]}</strong><span>{x[1]}</span></div></div>)}
