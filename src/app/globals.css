@@ -5,3 +5,7 @@
 @media(max-width:520px){.container{width:min(100% - 28px,1160px)}.cards{grid-template-columns:1fr}.trust-item{padding:10px 7px}.trust-item strong{font-size:11px}.hero h1{font-size:41px}.steps{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.brand span{font-size:16px}}
 
 .hero-image{display:block;width:calc(100% + clamp(0px,calc((100vw - 1160px)/2),380px));max-width:none;height:auto;margin-right:clamp(-380px,calc((1160px - 100vw)/2),0px);mix-blend-mode:lighten}
+
+@media(max-width:960px){.navlinks,.header-quote{display:none}.mobile-menu{display:inline-flex}}
+@media(max-width:800px){.hero-image{width:100%;max-width:100%;margin-right:0}.hero-grid>*,.split>*,.cards>*,.steps>*,.two-col>*{min-width:0}}
+@media(max-width:520px){.hero h1{font-size:clamp(32px,10vw,41px)}.service-card{padding:20px}.card-bottom{flex-wrap:wrap;justify-content:flex-start}}
