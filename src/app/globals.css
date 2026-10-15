@@ -21,3 +21,17 @@
 .footer-bottom{display:flex;justify-content:space-between;gap:14px;border-top:1px solid var(--line);padding-top:18px;font-size:11px}
 @media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr;gap:30px 20px}.footer-about{grid-column:1/-1}}
 @media(max-width:420px){.footer-bottom{flex-direction:column}}
+
+/* Softer public-facing surfaces while keeping the HexFort color palette. */
+:root{--line:#1a2d3c}
+.site-header{border-color:#122433}
+.btn{border-radius:999px;box-shadow:0 5px 18px #00cfff18}
+.btn.secondary{border-color:#294455;background:#ffffff04}
+.trust-strip{border-color:#142838}
+.service-card{border-color:#172d3d;border-radius:20px;background:linear-gradient(150deg,#0b1925,#08121c 72%);box-shadow:0 12px 32px #0002}
+.service-card:hover{border-color:#1d6479;box-shadow:0 16px 38px #0004;transform:translateY(-2px)}
+.icon-box{border-radius:14px;background:#00cfff08}
+.icon-box.red{background:#ff383808}
+.step{border:1px solid #172d3d;border-radius:16px;background:linear-gradient(150deg,#0b1925,#08121c 72%)}
+.feature-panel,.cta{border-radius:22px}
+.field input,.field textarea,.field select,.admin-input{border-radius:12px}
