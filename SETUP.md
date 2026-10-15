@@ -34,7 +34,7 @@ This is the first implementation scaffold for the approved dark navy / cyber-blu
 ## Important production notes
 - Admin dashboard and database RLS require the admin user's trusted `app_metadata.role` to equal `admin`. Verify this is correctly assigned before using the admin area.
 - The admin UI in this initial scaffold uses Supabase Auth client session. Before production, add server-side middleware/route protection, CSRF-aware mutation handling as appropriate, and an audit-log insert for each admin change.
-- Quote email alerts use a Supabase Edge Function and Resend. Follow the setup below; alerts do not work until the provider, function secrets, and database webhook are configured.
+- Quote email alerts use a Supabase Edge Function and Zoho Mail SMTP. Follow the setup below; alerts do not work until SMTP secrets and the database webhook are configured.
 - Public form rate limiting / CAPTCHA or Turnstile should be added before public launch to mitigate spam.
 - Add contact details in the contact page/settings before launch. No phone, email, WhatsApp number, legal entity identifiers, prices or certifications have been invented.
 - Replace the uploaded low-resolution logo reference with a clean, high-resolution export of the same exact logo before production. The reference is used unchanged here.
@@ -43,9 +43,9 @@ This is the first implementation scaffold for the approved dark navy / cyber-blu
 
 ## Quote email alerts
 
-The `notify-quote` Edge Function emails the configured inbox after a new `quote_requests` row is inserted. It includes the submitted name, email, phone, selected service, currency, full requirements message, and received time.
+The `notify-quote` Edge Function emails the configured inbox after a new quote, support, or engagement request. Engagement emails include the submitted scope details; signed PDFs stay in private storage and are reviewed through the admin dashboard.
 
-1. Create a Resend account, verify a sender domain you control, and create an API key. Use a sender such as `HexFort Security <notifications@hexfortsecurity.in>` only after Resend verifies that domain.
+1. This Zoho account is in the India data center: use `smtppro.zoho.in`, SSL port `465`, and mailbox `info@hexfortsecurity.in`. Create an app-specific password in Zoho Accounts under **Security → App Passwords**; never put it in chat or Git.
 2. Install and authenticate the Supabase CLI, then deploy the function from this project directory:
    ```bash
    supabase login
@@ -53,10 +53,10 @@ The `notify-quote` Edge Function emails the configured inbox after a new `quote_
    ```
 3. Store the secrets in the Supabase project (never in the website or Git):
    ```bash
-   supabase secrets set RESEND_API_KEY=YOUR_RESEND_KEY NOTIFICATION_TO_EMAIL=hexfortsecurity@gmail.com FROM_EMAIL="HexFort Security <notifications@hexfortsecurity.in>" WEBHOOK_SECRET=YOUR_LONG_RANDOM_SECRET --project-ref YOUR_PROJECT_REF
+   supabase secrets set SMTP_HOST=smtppro.zoho.in SMTP_PORT=465 SMTP_SECURE=true SMTP_USER=info@hexfortsecurity.in SMTP_PASS=YOUR_ZOHO_APP_PASSWORD NOTIFICATION_TO_EMAIL=hexfortsecurity@gmail.com SMTP_FROM_EMAIL="HexFort Security <info@hexfortsecurity.in>" WEBHOOK_SECRET=YOUR_LONG_RANDOM_SECRET --project-ref YOUR_PROJECT_REF
    ```
-4. In Supabase Dashboard, open **Database → Webhooks** and create a webhook for table `public.quote_requests`, event **INSERT**, method **POST**, URL `https://YOUR_PROJECT_REF.supabase.co/functions/v1/notify-quote`. Add header `x-webhook-secret` with the same value as `WEBHOOK_SECRET`.
-5. Submit one clearly marked test quote from the live form and confirm it arrives in the configured inbox. Check the Edge Function and Database Webhook logs if it does not.
+4. Create the `quote_requests` **INSERT** database webhook in **Database → Webhooks** using `https://YOUR_PROJECT_REF.supabase.co/functions/v1/notify-quote` and header `x-webhook-secret` with the same value as `WEBHOOK_SECRET`. Apply `supabase/migrations/20261015_request_email_triggers.sql` to copy that webhook configuration to support and engagement forms.
+5. Submit a clearly marked test request and verify delivery in the configured inbox. Check the Edge Function and Database Webhook logs if it does not.
 
 Quote requests are saved before the webhook sends email, so an email-provider failure does not lose the request. Check webhook/function logs for delivery failures; the admin dashboard remains the source of truth.
 
