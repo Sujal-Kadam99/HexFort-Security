@@ -8,7 +8,7 @@ export type Service = {
   deliverables: string[];
   price_inr: number | null;
   price_usd: number | null;
-  pricing_mode: "fixed" | "quote";
+  pricing_mode: "fixed" | "quote" | "starting";
   is_published: boolean;
   is_featured: boolean;
   created_at?: string;
