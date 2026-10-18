@@ -6,7 +6,7 @@ const team = [
     role: "Founder & Lead Security Consultant",
     linkedin: "https://www.linkedin.com/in/sujal-kadam-939616331/",
     bullets: [
-      "Works with the team across Red Team, Blue Team, VAPT and Consulting engagements",
+      "Works with the team across the four core assessment services",
     ],
   },
   {

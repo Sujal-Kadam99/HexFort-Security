@@ -3,15 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hexfortsecurity.in"),
-  title: { default: "Cybersecurity Services, VAPT & Red Teaming | HexFort Security", template: "%s | HexFort Security" },
-  description: "HexFort Security helps organizations improve cyber resilience with authorized VAPT, red teaming, blue teaming and security consulting.",
+  title: { default: "Cybersecurity Services, VAPT & Security Audits | HexFort Security", template: "%s | HexFort Security" },
+  description: "HexFort Security provides authorized web and network VAPT, configuration reviews, phishing simulations and scoped security assessments.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "https://hexfortsecurity.in",
     siteName: "HexFort Security",
-    title: "Cybersecurity Services, VAPT & Red Teaming | HexFort Security",
-    description: "Authorized offensive and defensive security services to help organizations find weaknesses and strengthen defenses.",
+    title: "Cybersecurity Services, VAPT & Security Audits | HexFort Security",
+    description: "Authorized web and network VAPT, configuration reviews, phishing simulations and scoped security assessments.",
     images: ["/herojpeg.jpeg"],
   },
   twitter: { card: "summary_large_image", images: ["/herojpeg.jpeg"] },

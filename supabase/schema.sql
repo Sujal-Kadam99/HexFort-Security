@@ -113,15 +113,16 @@ drop policy if exists "Admins read activity logs" on public.admin_activity_logs;
 create policy "Admins read activity logs" on public.admin_activity_logs for select to authenticated
 using ((auth.jwt() -> 'app_metadata' ->> 'role') = 'admin');
 
--- Seed safe starter services with quote-based pricing. Change from admin after launch.
+-- Seed the current presentation service catalog with quote-based pricing.
 insert into public.services (slug,name,category,short_description,description,deliverables,pricing_mode,is_published,is_featured)
 values
-('red-teaming','Red Teaming','Red Team','Simulate realistic adversary activity within a documented authorized scope.','Evaluate selected controls and attack paths under agreed rules of engagement.',array['Rules of engagement','Findings report','Prioritized recommendations'],'quote',true,true),
-('blue-teaming','Blue Teaming','Blue Team','Review detection, response readiness and defensive controls.','Assess agreed detection and response workflows and identify improvement opportunities.',array['Defensive observations','Detection recommendations','Improvement plan'],'quote',true,true),
-('web-application-vapt','Web Application VAPT','VAPT','Security testing for an agreed web application scope.','Identify and validate application weaknesses and provide remediation guidance.',array['Findings report','Risk ratings','Remediation guidance'],'quote',true,true),
-('network-vapt','Network VAPT','VAPT','Assess in-scope network assets and exposed services.','Evaluate approved network assets and document validated findings.',array['Scope summary','Validated findings','Remediation priorities'],'quote',true,true),
-('secure-configuration-review','Secure Configuration Review','Consulting','Review security-relevant configuration against agreed baselines.','Assess agreed configurations and recommend hardening improvements.',array['Configuration observations','Hardening recommendations'],'quote',true,false),
-('phishing-simulation','Phishing Simulation','Blue Team','Authorized simulation to improve awareness and reporting workflows.','Plan a scoped simulation with agreed safeguards and outcomes.',array['Campaign summary','Awareness recommendations'],'quote',true,false)
+('web-application-vapt','Web Application VAPT','Core service','Manual and tool-assisted testing of agreed web applications and APIs.','OWASP WSTG-aligned assessment. Estimated delivery: 5–7 business days.',array['Full findings report','CVSS-scored technical findings','Remediation guidance and one retest within 30 days'],'quote',true,true),
+('network-vapt','Network VAPT','Core service','Internal or external testing of authorized network assets.','PTES-aligned assessment. Estimated delivery: 5–7 business days.',array['Full findings report','CVSS-scored technical findings','Remediation guidance and one retest within 30 days'],'quote',true,true),
+('secure-configuration-review','Secure Configuration Review','Core service','Review server, OS and database hardening against CIS Benchmarks.','Review of systems agreed during scoping. Estimated delivery: 2–3 business days.',array['Configuration findings report','Risk context','Prioritized hardening guidance'],'quote',true,true),
+('phishing-simulation','Phishing Simulation','Core service','A carefully scoped campaign with awareness and reporting outcomes.','Campaign objectives, audience, safeguards and schedule agreed in advance. Estimated delivery: 1–2 weeks.',array['Campaign summary','Awareness reporting','Practical recommendations'],'quote',true,true),
+('source-code-review','Source Code Review','Add-on assessment','SAST-assisted manual review of agreed source code.','Review focused on OWASP Top 10 patterns and the agreed codebase.',array['Validated code findings','Risk context','Remediation guidance'],'quote',true,false),
+('cloud-security-baseline-audit','Cloud Security Baseline Audit','Add-on assessment','A narrow-scope review of selected cloud security settings.','For example, AWS S3/IAM or an Azure CIS baseline, with manual validation.',array['Baseline observations','Validated risk findings','Prioritized recommendations'],'quote',true,false),
+('vendor-risk-management','Vendor Risk Management','Add-on assessment','A focused review of a vendor security posture and evidence.','SIG-lite questionnaires, vendor risk scoring and review cadence recommendations.',array['Questionnaire review','Vendor risk summary','Review cadence recommendations'],'quote',true,false)
 on conflict (slug) do nothing;
 
 -- Create your single admin in Supabase Auth, then assign app_metadata role=admin

@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { PageHero, Shell } from "@/components/Site";
-const items = [
-["red-teaming","Red Teaming","Adversary simulation","Simulate realistic attack paths within a documented, authorized scope to evaluate defensive readiness.","Engagement scope, rules of engagement, findings report and prioritized recommendations."],
-["blue-teaming","Blue Teaming","Defensive operations","Review detection and response capabilities, alert quality, logging coverage and incident workflows.","Defensive observations, detection opportunities and practical improvement recommendations."],
-["web-vapt","Web Application VAPT","Application security","Assess agreed web applications and APIs for security weaknesses and provide actionable remediation advice.","Scoped findings report with risk ratings, evidence and remediation guidance."],
-["network-vapt","Network VAPT","Infrastructure security","Assess in-scope network assets and services for weaknesses that may expose systems to risk.","Asset and scope summary, validated findings and remediation priorities."],
-["configuration","Secure Configuration Review","Hardening assessment","Review agreed systems and configurations against suitable security baselines.","Configuration observations, risk context and hardening recommendations."],
-["phishing","Phishing Simulation","Human-layer resilience","Run an approved simulation to measure awareness and improve reporting and response processes.","Agreed campaign summary and recommendations for awareness improvement."]
-];
-export default function Services(){return <Shell><PageHero eyebrow="CAPABILITIES" title="Security services built around your risks." desc="Choose a service to explore its objectives, scope and expected deliverables. Every engagement starts with authorization and clear rules of engagement."/><div className="content"><div className="container cards">{items.map((s,i)=><article id={s[0]} className="service-card" key={s[0]}><div className={"icon-box "+(i===0||i===5?"red":"")}>{["◎","◈","⌘","⌘","▣","◉"][i]}</div><span className="eyebrow">{s[2]}</span><h3>{s[1]}</h3><p>{s[3]}</p><p><b>Typical deliverables:</b> {s[4]}</p><div className="card-bottom"><Link href={"/contact?service="+encodeURIComponent(s[1])}>Request a quote →</Link><Link href={"/engagement?service="+encodeURIComponent(s[1])}>Start Engagement ↗</Link></div></article>)}</div></div></Shell>}
+import { addOnServices, coreServices } from "@/lib/service-catalog";
+
+function ServiceCards({ items }: { items: typeof coreServices }) {
+  return <div className="cards" style={{ marginTop: 18 }}>{items.map((service) => <article id={service.slug} className="service-card" key={service.slug}>
+    <div className="icon-box">{service.icon}</div><span className="eyebrow">{service.category}</span><h3>{service.name}</h3>
+    <p>{service.short_description}</p><p><b>Scope:</b> {service.scope}</p>
+    {service.timeline && <p><b>Estimated timeline:</b> {service.timeline}</p>}
+    <p><b>Deliverables:</b> {service.deliverables.join(" · ")}</p>
+    <div className="card-bottom"><Link href={"/contact?service="+encodeURIComponent(service.name)}>Request a quote →</Link><Link href={"/engagement?service="+encodeURIComponent(service.name)}>Start Engagement ↗</Link></div>
+  </article>)}</div>;
+}
+
+export default function Services(){return <Shell><PageHero eyebrow="CAPABILITIES" title="Security services built around your risks." desc="Choose a core assessment or scoped add-on. Every engagement starts with written authorization and agreed rules of engagement."/><div className="content"><div className="container"><h2>Core services</h2><ServiceCards items={coreServices}/><h2 style={{marginTop:52}}>Add-on assessments</h2><p className="muted">Scoped and quoted per engagement after a brief scoping call.</p><ServiceCards items={addOnServices}/></div></div></Shell>}
