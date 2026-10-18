@@ -22,6 +22,13 @@
 @media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr;gap:30px 20px}.footer-about{grid-column:1/-1}}
 @media(max-width:420px){.footer-bottom{flex-direction:column}}
 
+.legal-document{max-width:880px;color:#c7d4df;line-height:1.8}
+.legal-document h2{color:var(--text);font:700 22px 'Space Grotesk',sans-serif;margin:34px 0 10px}
+.legal-document p,.legal-document li{font-size:14px}
+.legal-document ul{padding-left:22px}
+.legal-document li{margin:8px 0}
+.legal-document a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+
 /* Softer public-facing surfaces while keeping the HexFort color palette. */
 :root{--line:#1a2d3c}
 .site-header{border-color:#122433}
