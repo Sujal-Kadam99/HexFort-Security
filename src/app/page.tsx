@@ -7,7 +7,7 @@ export default function Home() {
   <main>
    <section className="hero"><div className="container hero-grid">
     <div><div className="eyebrow"><span style={{color:"var(--blue)"}}>ASSESS</span> &nbsp;/&nbsp; <span style={{color:"var(--red)"}}>IMPROVE</span></div>
-    <h1>Find Weaknesses.<br/><span className="blue">Strengthen</span> <span className="red">Security.</span></h1>
+    <h1><span className="blue">Offensive Mindset.</span><br/><span className="red">Defensive Strength.</span></h1>
     <p className="lead">HexFort Security provides authorized security assessments, practical findings and remediation guidance for your agreed scope.</p>
     <div className="actions"><Link className="btn" href="/contact">Get a Quote →</Link><Link className="btn secondary" href="/services">Explore Services</Link></div>
     </div>
