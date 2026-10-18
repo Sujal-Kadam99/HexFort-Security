@@ -18,7 +18,7 @@ export function Footer() {
     <div className="footer-about"><Link className="brand" href="/"><img src="/hexfort-mark-v2.png" alt=""/><span>HexFort<small>SECURITY</small></span></Link><p>Think Like an Attacker. Build Like a Defender.</p></div>
     <div className="footer-column"><strong>Explore</strong><Link href="/about">About</Link><Link href="/methodology">Methodology</Link><Link href="/pricing">Pricing</Link></div>
     <div className="footer-column"><strong>Services</strong><Link href="/services">Security Services</Link><Link href="/engagement">Start an Engagement</Link><Link href="/support">Support</Link></div>
-    <div className="footer-column"><strong>Contact</strong><Link href="/contact">Get in Touch</Link><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms</Link></div>
+    <div className="footer-column"><strong>Contact</strong><Link href="/contact">Get in Touch</Link><a href="mailto:info@hexfortsecurity.in">info@hexfortsecurity.in</a><a href="mailto:support@hexfortsecurity.in">support@hexfortsecurity.in</a><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms</Link></div>
   </div><div className="footer-bottom"><span>© {new Date().getFullYear()} HexFort Security. All rights reserved.</span><span>Authorized security testing, built on trust.</span></div></div></footer>;
 }
 export function PageHero({eyebrow,title,desc}:{eyebrow:string;title:string;desc:string}) {
