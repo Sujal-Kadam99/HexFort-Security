@@ -29,7 +29,7 @@ const team = [
   },
   {
     name: "Harsh Karkhile",
-    role: "Social Media Manager",
+    role: "Co-Founder & Social Media Manager",
     linkedin: "https://www.linkedin.com/in/harsh-karkhile-9430a6397/",
     bullets: [
       "Handles HexFort Security’s social media presence",
