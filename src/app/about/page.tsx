@@ -6,10 +6,7 @@ const team = [
     role: "Founder & Lead Security Consultant",
     linkedin: "https://www.linkedin.com/in/sujal-kadam-939616331/",
     bullets: [
-      "Works across all four service lines — Red Team, Blue Team, VAPT and Consulting",
-      "Certified Ethical Hacker (CEH) — EC-Council",
-      "BSc Cybersecurity & Digital Science",
-      "Creator of AihaX, the AI-assisted recon platform powering engagements",
+      "Works with the team across Red Team, Blue Team, VAPT and Consulting engagements",
     ],
   },
   {
@@ -19,8 +16,6 @@ const team = [
     bullets: [
       "Leads Web Application VAPT engagements",
       "Leads Network VAPT engagements",
-      "Certified Ethical Hacker (CEH) — EC-Council",
-      "Vulnerability identification and validation",
     ],
   },
   {
@@ -30,18 +25,14 @@ const team = [
     bullets: [
       "Leads Secure Configuration Review engagements",
       "Leads Phishing Simulation campaigns",
-      "Certified Ethical Hacker (CEH) — EC-Council",
-      "Baseline-control and human-layer assessments",
     ],
   },
   {
     name: "Harsh Karkhile",
-    role: "Co-Founder — Marketing & Social Media",
+    role: "Social Media Manager",
     linkedin: "https://www.linkedin.com/in/harsh-karkhile-9430a6397/",
     bullets: [
-      "Co-Founder, HexFort Security",
-      "Manages marketing and social media presence",
-      "Client communication and outreach",
+      "Handles HexFort Security’s social media presence",
     ],
   },
 ];
@@ -66,7 +57,7 @@ export default function About() {
               We bring together offensive and defensive security perspectives to turn assessment findings into practical next steps. Engagement scope, deliverables and timelines are agreed before testing starts.
             </p>
             <p className="muted">
-              Our engagements are supported by <strong>AihaX</strong> — an AI-assisted reconnaissance platform that accelerates attack surface mapping, subdomain enumeration and open-source intelligence gathering, so testing effort is focused where it matters.
+              We use <strong>AihaX</strong> to support reconnaissance during authorized engagements. Our team reviews the results and works within the agreed scope.
             </p>
           </div>
           <div className="feature-panel">
@@ -82,7 +73,7 @@ export default function About() {
 
         <div className="container" style={{ marginTop: 56 }}>
           <div className="eyebrow">THE TEAM</div>
-          <div className="cards" style={{ gridTemplateColumns: "repeat(2,1fr)", marginTop: 16 }}>
+          <div className="cards" style={{ marginTop: 16 }}>
             {team.map((m) => (
               <article className="service-card" key={m.name}>
                 <h3 style={{ marginBottom: 2 }}>{m.name}</h3>
