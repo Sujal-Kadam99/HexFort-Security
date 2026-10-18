@@ -1,3 +1,31 @@
 import { PageHero, Shell } from "@/components/Site";
 import { SupportForm } from "@/components/SupportForm";
-export default function Support(){return <Shell><PageHero eyebrow="SUPPORT" title="How can we help?" desc="Submit a support request about an existing engagement or website enquiry. Do not include passwords, keys or sensitive system details."/><div className="content"><div className="container split"><div><h2>Support requests</h2><p className="muted">Share a brief description and the best contact email. We will review your request and respond within one business day.</p><div className="feature-panel"><h3>Security note</h3><p
+
+export default function Support() {
+  return (
+    <Shell>
+      <PageHero
+        eyebrow="SUPPORT"
+        title="How can we help?"
+        desc="Submit a support request about an existing engagement or website enquiry. Do not include passwords, keys or sensitive system details."
+      />
+      <div className="content">
+        <div className="container split">
+          <div>
+            <h2>Support requests</h2>
+            <p className="muted">
+              Share a brief description and the best contact email. We will review your request and respond within one business day.
+            </p>
+            <div className="feature-panel">
+              <h3>Security note</h3>
+              <p className="muted">
+                Do not include passwords, API keys, credentials or sensitive system details in your support request. Use a secure channel for anything confidential.
+              </p>
+            </div>
+          </div>
+          <SupportForm />
+        </div>
+      </div>
+    </Shell>
+  );
+}
