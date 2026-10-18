@@ -10,6 +10,14 @@ const team = [
     ],
   },
   {
+    name: "Harsh Karkhile",
+    role: "Co-Founder & Marketing Head",
+    linkedin: "https://www.linkedin.com/in/harsh-karkhile-9430a6397/",
+    bullets: [
+      "Leads marketing and manages HexFort Security’s social media presence",
+    ],
+  },
+  {
     name: "Shamshersingh Hada",
     role: "VAPT Specialist — Network & Web",
     linkedin: "https://www.linkedin.com/in/shamshersingh-hada-ab8459359/",
@@ -25,14 +33,6 @@ const team = [
     bullets: [
       "Leads Secure Configuration Review engagements",
       "Leads Phishing Simulation campaigns",
-    ],
-  },
-  {
-    name: "Harsh Karkhile",
-    role: "Co-Founder & Social Media Manager",
-    linkedin: "https://www.linkedin.com/in/harsh-karkhile-9430a6397/",
-    bullets: [
-      "Handles HexFort Security’s social media presence",
     ],
   },
 ];
